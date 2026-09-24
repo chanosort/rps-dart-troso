@@ -83,3 +83,34 @@ String getMove(String playerName, List<String> validMoves) {
 
   return move;
 }
+
+String? validateMove(String? raw, List<String> validMoves) {
+  if (raw == null) return null;
+  String cleaned = raw.trim().toLowerCase();
+  return validMoves.contains(cleaned) ? cleaned : null;
+}
+
+// Decides the winner of a round
+String? decideWinner(String moveOne, String moveTwo) {
+  if (moveOne == moveTwo) {
+    return null;
+  }
+
+  switch (moveOne) {
+    case 'rock':
+      return moveTwo == 'scissors' ? 'player1' : 'player2';
+    case 'paper':
+      return moveTwo == 'rock' ? 'player1' : 'player2';
+    case 'scissors':
+      return moveTwo == 'paper' ? 'player1' : 'player2';
+    default:
+      return null;
+  }
+}
+
+///  printing 30 blank lines using a for loop.
+void clearScreen() {
+  for (int i = 0; i < 30; i++) {
+    print('');
+  }
+}
